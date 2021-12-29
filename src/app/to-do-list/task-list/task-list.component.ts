@@ -26,9 +26,11 @@ export class TaskListComponent implements OnInit {
 
   adicionarTask(event: any){
     event?.preventDefault()
-    this.todasTasks = this.taskListService.addTask(event)
-    this.formTask.nativeElement.reset()
-    this.atualizarTasksFiltradas()
+    if(event.target[0].value != ''){
+      this.todasTasks = this.taskListService.addTask(event)
+      this.formTask.nativeElement.reset()
+      this.atualizarTasksFiltradas()
+    }
   }
 
   removerTask(event: any){
