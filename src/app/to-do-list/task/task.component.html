@@ -1,6 +1,6 @@
 <article>
   <label [style.text-decoration]="textDecoration">
-    <input (change)="EmitChangeStatusTask()" type="checkbox" name="task">
+    <input #checkbox [checked]="task.status === 1" (change)="EmitChangeStatusTask()" type="checkbox" name="task">
     {{task.nome}}
   </label>
   <button (click)="EmitExcluirTask()">
