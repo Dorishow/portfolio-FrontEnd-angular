@@ -1,0 +1,10 @@
+<form #formTask (submit)="adicionarTask($event)">
+  <label>
+    <p> Adicionar nova task </p>
+    <input type="text" name="novaTask" id="">
+  </label>
+</form>
+
+<section>
+  <app-task *ngFor="let task of tasksFiltradas" (changeStatusTask)="concluirTask($event)" (excluirTask)="removerTask($event)" [task]="task"></app-task>
+</section>
