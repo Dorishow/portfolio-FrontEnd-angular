@@ -1,5 +1,5 @@
 <article>
-  <label>
+  <label [style.text-decoration]="textDecoration">
     <input (change)="EmitChangeStatusTask()" type="checkbox" name="task">
     {{task.nome}}
   </label>

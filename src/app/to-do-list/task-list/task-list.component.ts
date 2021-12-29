@@ -18,8 +18,9 @@ export class TaskListComponent implements OnInit {
   todasTasks: Tarefa[] = []
   tasksFiltradas: Tarefa[] = this.todasTasks
 
-  concluirTask(taskCocluida: Tarefa){
-    console.log('Task concluída',taskCocluida)
+  changeStatusTask(taskCocluida: Tarefa){
+    // this.todasTasks[ this.todasTasks.indexOf(taskCocluida) ].status = TarefaStatus.CONCLUIDA
+    this.atualizarTasksFiltradas()
   }
 
   adicionarTask(event: any){
