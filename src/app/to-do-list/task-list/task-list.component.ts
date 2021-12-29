@@ -1,3 +1,4 @@
+import { TaskListService } from './../task-list.service';
 import { DummyTasksService } from './../dummy-tasks.service';
 import { Tarefa } from './../tarefa';
 import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
@@ -11,7 +12,7 @@ import { filter } from 'rxjs';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor(private dummyTasksService: DummyTasksService) { }
+  constructor(private taskListService: TaskListService) { }
 
   @ViewChild('formTask') formTask!: ElementRef;
 
@@ -19,21 +20,19 @@ export class TaskListComponent implements OnInit {
   tasksFiltradas: Tarefa[] = this.todasTasks
 
   changeStatusTask(taskCocluida: Tarefa){
-    // this.todasTasks[ this.todasTasks.indexOf(taskCocluida) ].status = TarefaStatus.CONCLUIDA
+    this.taskListService.changeTaskStatus(taskCocluida)
     this.atualizarTasksFiltradas()
   }
 
   adicionarTask(event: any){
     event?.preventDefault()
-    this.todasTasks = [...this.todasTasks,
-    {id: this.todasTasks.length, nome: event.target[0].value, status: TarefaStatus.EM_ANDAMENTO}
-    ]
+    this.todasTasks = this.taskListService.addTask(event)
     this.formTask.nativeElement.reset()
     this.atualizarTasksFiltradas()
   }
 
   removerTask(event: any){
-    this.todasTasks[ this.todasTasks.indexOf(event) ].status = TarefaStatus.NA_LIXEIRA
+    this.todasTasks = this.taskListService.removeTask(event)
     this.atualizarTasksFiltradas()
     console.log('task na lixeira', event)
   }
@@ -45,7 +44,7 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todasTasks = this.dummyTasksService.getAllDummytasks()
+    this.todasTasks = this.taskListService.getAllTasks()
     this.atualizarTasksFiltradas()
   }
 
