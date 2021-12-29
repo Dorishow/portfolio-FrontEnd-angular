@@ -1,10 +1,23 @@
-<form #formTask (submit)="adicionarTask($event)">
-  <label>
-    <p> Adicionar nova task </p>
-    <input type="text" name="novaTask" id="">
-  </label>
-</form>
+<div class="container">
 
-<section>
-  <app-task *ngFor="let task of tasksFiltradas" (changeStatusTask)="changeStatusTask($event)" (excluirTask)="removerTask($event)" [task]="task"></app-task>
-</section>
+  <h2 *ngIf="tasksFiltradas.length != 0" class="emptyListMessage">Lista de tarefas</h2>
+  <section [class.taskContainer]="tasksFiltradas.length != 0">
+
+    <app-task *ngFor="let task of tasksFiltradas" (changeStatusTask)="changeStatusTask($event)" (excluirTask)="removerTask($event)" [task]="task"></app-task>
+    <h2 *ngIf="tasksFiltradas.length == 0" class="emptyListMessage">A lista está vazia</h2>
+  </section>
+
+  <form class="formAddTask" #formTask (submit)="adicionarTask($event)">
+    <label>
+      <input placeholder="Adicionar nova tarefa" type="text" name="novaTask" id="">
+    </label>
+    <div class="submitContainer">
+      <button class="submitTask">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-add" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4" />
+        </svg>
+      </button>
+    </div>
+  </form>
+
+</div>
