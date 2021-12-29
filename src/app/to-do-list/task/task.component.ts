@@ -15,8 +15,24 @@ export class TaskComponent implements OnInit {
   @Output() changeStatusTask = new EventEmitter()
   @Output() excluirTask = new EventEmitter()
 
+  textDecoration: string = ''
+
   EmitChangeStatusTask(){
     this.changeStatusTask.emit(this.task)
+    this.changTaskStatus()
+  }
+
+  changTaskStatus(){
+    if(this.task.status === TarefaStatus.CONCLUIDA){
+      this.task.status = TarefaStatus.EM_ANDAMENTO
+      this.textDecoration = ''
+      console.log(' task concluída desmarcada ',this.task)
+    }
+    else{
+      this.task.status = TarefaStatus.CONCLUIDA
+      this.textDecoration = 'line-through'
+      console.log(' task concluída ',this.task)
+    }
   }
 
   EmitExcluirTask(){
@@ -24,6 +40,7 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.textDecoration = this.task.status === TarefaStatus.CONCLUIDA? 'line-through' : ''
   }
 
 }

@@ -6,5 +6,5 @@
 </form>
 
 <section>
-  <app-task *ngFor="let task of tasksFiltradas" (changeStatusTask)="concluirTask($event)" (excluirTask)="removerTask($event)" [task]="task"></app-task>
+  <app-task *ngFor="let task of tasksFiltradas" (changeStatusTask)="changeStatusTask($event)" (excluirTask)="removerTask($event)" [task]="task"></app-task>
 </section>
