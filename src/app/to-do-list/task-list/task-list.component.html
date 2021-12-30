@@ -4,7 +4,7 @@
   <section [class.taskContainer]="tasksFiltradas.length != 0">
 
     <app-task *ngFor="let task of tasksFiltradas" (changeStatusTask)="changeStatusTask($event)" (excluirTask)="removerTask($event)" [task]="task"></app-task>
-    <h2 *ngIf="tasksFiltradas.length == 0" class="emptyListMessage">A lista está vazia</h2>
+    <h2 *ngIf="tasksFiltradas.length == 0" class="emptyListMessage">A lista está vazia! <br> <h6>Adicione alguma tarefa</h6> </h2>
   </section>
 
   <form class="formAddTask" #formTask (submit)="adicionarTask($event)">
