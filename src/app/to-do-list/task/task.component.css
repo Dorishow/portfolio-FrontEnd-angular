@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Pushster&display=swap');
+
 .icon-lixeira{
   width: 25px;
   margin: auto;
@@ -13,11 +15,14 @@
   place-content: center;
   border-radius: .2rem;
   background-color: white;
+  color: #d13a85;
+  transform: scale(1);
 }
 
 .deleteButton:hover{
-  background-color: #ccc;
-  color: red;
+  background-color: #d13a85;
+  animation: dropShadowAnim .2s ease 0s 1 normal forwards;
+  color: rgb(225, 225, 225);
 }
 
 .label{
@@ -34,6 +39,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-family: 'Lato', sans-serif;
 }
 
 input[type="checkbox"] {
@@ -55,11 +61,13 @@ input[type="checkbox"] {
 }
 
 .label:hover input[type="checkbox"] ~ .checkmark {
-  background-color: #ccc;
+  background-color: rgb(225, 225, 225);
+  animation: dropShadowAnim .2s ease 0s 1 normal forwards;
+
 }
 
 .label input[type="checkbox"]:checked ~ .checkmark {
-  background-color: #38E4AE;
+  background-color: #99ff99;
 }
 
 .checkmark:after {
@@ -82,4 +90,20 @@ input[type="checkbox"]:checked ~ .checkmark:after {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+
+
+
+
+@keyframes dropShadowAnim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    transform: scale(1);
+  }
+
+  100% {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    transform: scale(1.4);
+  }
 }
